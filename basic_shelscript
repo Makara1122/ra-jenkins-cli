@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#this is comment
+
+#variable
+name="World"
+
+current_date=$(date +%Y-%m-%d)
+
+#function
+greeting(){
+ local person=$1
+ echo "Hello, $person!"
+
+}
+
+#Main script
+echo "Today is $current_date"
+
+#Control Structure
+if [ "$name" == "World" ]; then
+	greeting $name
+else 
+	echo "Name is not world"
+fi
+
+
+#Loop
+for i in {1..5}; do 
+	echo "Count: $i"
+done

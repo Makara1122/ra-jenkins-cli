@@ -1,0 +1,39 @@
+<project>
+    <actions/>
+    <description>Your Pipeline Job Description</description>
+    <displayName>Your Job Display Name</displayName>
+    <name>YourJobName</name>
+    <properties>
+        <jenkins.model.BuildDiscarderProperty>
+            <strategy class="hudson.model.DiscardOldBuilds">
+                <daysToKeep>30</daysToKeep>
+                <numToKeep>5</numToKeep>
+            </strategy>
+        </jenkins.model.BuildDiscarderProperty>
+    </properties>
+    <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.90">
+        <script>
+            pipeline {
+                agent any
+                stages {
+                    stage('Build') {
+                        steps {
+                            echo 'Building...'
+                        }
+                    }
+                    stage('Test') {
+                        steps {
+                            echo 'Testing...'
+                        }
+                    }
+                }
+            }
+        </script>
+        <sandbox>true</sandbox>
+    </definition>
+    <triggers>
+        <hudson.triggers.TimerTrigger>
+            <spec>H/5 * * * *</spec> <!-- Runs every 5 minutes -->
+        </hudson.triggers.TimerTrigger>
+    </triggers>
+</project>
